@@ -14,18 +14,20 @@
     <div class="row">
         <div class="col-12">
             <div class="col-md-12">
-                <h1>Product
-                    <small>List</small>
-                    <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add New</a></div>
+                <h1>Pertemuan 9
+                    <small>CRUD Ajax</small>
+                    <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah </a></div>
                 </h1>
             </div>
             
             <table class="table table-striped" id="mydata">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Kode</th>
                         <th>Nama</th>
                         <th>Harga</th>
+                        <th>Stok</th>
                         <th style="text-align: right;">Aksi</th>
                     </tr>
                 </thead>
@@ -44,30 +46,36 @@
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
                         <div class="form-group row">
-                            <label class="col-md-2 col-form-label">Product Code</label>
+                            <label class="col-md-2 col-form-label">Kode</label>
                             <div class="col-md-10">
                               <input type="text" name="product_code" id="product_code" class="form-control" placeholder="Product Code">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 col-form-label">Product Name</label>
+                            <label class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">
                               <input type="text" name="product_name" id="product_name" class="form-control" placeholder="Product Name">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 col-form-label">Price</label>
+                            <label class="col-md-2 col-form-label">Harga</label>
                             <div class="col-md-10">
                               <input type="text" name="price" id="price" class="form-control" placeholder="Price">
                             </div>
                         </div>
+                          <div class="form-group row">
+                              <label class="col-md-2 col-form-label">Stok</label>
+                              <div class="col-md-10">
+                                  <input type="text" name="stok" id="stok" class="form-control" placeholder="Stok">
+                              </div>
+                          </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -92,23 +100,30 @@
                   </div>
                   <div class="modal-body">
                         <div class="form-group row">
-                            <label class="col-md-2 col-form-label">Product Code</label>
+                            <label class="col-md-2 col-form-label">Kode</label>
                             <div class="col-md-10">
-                              <input type="text" name="product_code_edit" id="product_code_edit" class="form-control" placeholder="Product Code" readonly>
+                              <input type="text" name="product_code_edit" id="product_code_edit" class="form-control" placeholder="Kode" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 col-form-label">Product Name</label>
+                            <label class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">
-                              <input type="text" name="product_name_edit" id="product_name_edit" class="form-control" placeholder="Product Name">
+                              <input type="text" name="product_name_edit" id="product_name_edit" class="form-control" placeholder="Nama">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 col-form-label">Price</label>
+                            <label class="col-md-2 col-form-label">Harga</label>
                             <div class="col-md-10">
-                              <input type="text" name="price_edit" id="price_edit" class="form-control" placeholder="Price">
+                              <input type="text" name="price_edit" id="price_edit" class="form-control" placeholder="Harga">
                             </div>
                         </div>
+
+                      <div class="form-group row">
+                          <label class="col-md-2 col-form-label">Harga</label>
+                          <div class="col-md-10">
+                              <input type="text" name="stok_edit" id="stok_edit" class="form-control" placeholder="Stok">
+                          </div>
+                      </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -166,12 +181,14 @@
 		        success : function(data){
 		            var html = '';
 		            var i;
+                    var index;
 		            for(i=0; i<data.length; i++){
 		                html += '<tr>'+
-		                  		'<td>'+data[i].product_code+'</td>'+
+                                '<td>'+data[i].product_code+'</td>'+
 		                        '<td>'+data[i].product_name+'</td>'+
 		                        '<td>'+data[i].product_price+'</td>'+
-		                        '<td style="text-align:right;">'+
+                                '<td>'+data[i].stok+'</td>'+
+                            '<td style="text-align:right;">'+
                                     '<a href="javascript:void(0);" class="btn btn-info btn-sm item_edit" data-product_code="'+data[i].product_code+'" data-product_name="'+data[i].product_name+'" data-price="'+data[i].product_price+'">Edit</a>'+' '+
                                     '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-product_code="'+data[i].product_code+'">Delete</a>'+
                                 '</td>'+
@@ -188,15 +205,17 @@
             var product_code = $('#product_code').val();
             var product_name = $('#product_name').val();
             var price        = $('#price').val();
+            var stok        = $('#stok').val();
             $.ajax({
                 type : "POST",
                 url  : "<?php echo site_url('product/save')?>",
                 dataType : "JSON",
-                data : {product_code:product_code , product_name:product_name, price:price},
+                data : {product_code:product_code , product_name:product_name, price:price, stok:stok},
                 success: function(data){
                     $('[name="product_code"]').val("");
                     $('[name="product_name"]').val("");
                     $('[name="price"]').val("");
+                    $('[name="stok"]').val("");
                     $('#Modal_Add').modal('hide');
                     show_product();
                 }
@@ -209,11 +228,14 @@
             var product_code = $(this).data('product_code');
             var product_name = $(this).data('product_name');
             var price        = $(this).data('price');
+            var stok        = $(this).data('stok');
             
             $('#Modal_Edit').modal('show');
             $('[name="product_code_edit"]').val(product_code);
             $('[name="product_name_edit"]').val(product_name);
             $('[name="price_edit"]').val(price);
+            $('[name="stok_edit"]').val(stok);
+
         });
 
         //update record to database
@@ -221,15 +243,18 @@
             var product_code = $('#product_code_edit').val();
             var product_name = $('#product_name_edit').val();
             var price        = $('#price_edit').val();
-            $.ajax({
+            var stok        = $('#stok_edit').val();
+
+             $.ajax({
                 type : "POST",
                 url  : "<?php echo site_url('product/update')?>",
                 dataType : "JSON",
-                data : {product_code:product_code , product_name:product_name, price:price},
+                data : {product_code:product_code , product_name:product_name, price:price, stok:stok},
                 success: function(data){
                     $('[name="product_code_edit"]').val("");
                     $('[name="product_name_edit"]').val("");
                     $('[name="price_edit"]').val("");
+                    $('[name="stok_edit"]').val("");
                     $('#Modal_Edit').modal('hide');
                     show_product();
                 }

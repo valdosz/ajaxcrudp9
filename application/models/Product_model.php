@@ -10,8 +10,10 @@ class Product_model extends CI_Model{
 		$data = array(
 				'product_code' 	=> $this->input->post('product_code'), 
 				'product_name' 	=> $this->input->post('product_name'), 
-				'product_price' => $this->input->post('price'), 
-			);
+				'product_price' => $this->input->post('price'),
+                'stok' => $this->input->post('stok'),
+
+        );
 		$result=$this->db->insert('product',$data);
 		return $result;
 	}
@@ -20,10 +22,12 @@ class Product_model extends CI_Model{
 		$product_code=$this->input->post('product_code');
 		$product_name=$this->input->post('product_name');
 		$product_price=$this->input->post('price');
+        $stok=$this->input->post('stok');
 
 		$this->db->set('product_name', $product_name);
 		$this->db->set('product_price', $product_price);
 		$this->db->where('product_code', $product_code);
+        $this->db->set('stok', $stok);
 		$result=$this->db->update('product');
 		return $result;
 	}
