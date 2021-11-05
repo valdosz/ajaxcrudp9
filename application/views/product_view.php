@@ -55,19 +55,19 @@
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Kode</label>
                             <div class="col-md-10">
-                              <input type="text" name="product_code" id="product_code" class="form-control" placeholder="Product Code">
+                              <input type="text" name="product_code" id="product_code" class="form-control" placeholder="Kode">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">
-                              <input type="text" name="product_name" id="product_name" class="form-control" placeholder="Product Name">
+                              <input type="text" name="product_name" id="product_name" class="form-control" placeholder="Nama">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Harga</label>
                             <div class="col-md-10">
-                              <input type="text" name="price" id="price" class="form-control" placeholder="Price">
+                              <input type="text" name="price" id="price" class="form-control" placeholder="Harga">
                             </div>
                         </div>
                           <div class="form-group row">

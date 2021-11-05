@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Waktu pembuatan: 05 Nov 2021 pada 15.13
+-- Waktu pembuatan: 05 Nov 2021 pada 15.47
 -- Versi server: 5.7.34
 -- Versi PHP: 7.4.21
 
@@ -30,16 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `product` (
   `product_code` varchar(15) NOT NULL,
   `product_name` varchar(100) DEFAULT NULL,
-  `product_price` int(11) DEFAULT NULL
+  `product_price` int(11) DEFAULT NULL,
+  `stok` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `product`
 --
 
-INSERT INTO `product` (`product_code`, `product_name`, `product_price`) VALUES
-('B0001', 'Pensil Warna', 20000),
-('B0002', 'Spidol', 5000);
+INSERT INTO `product` (`product_code`, `product_name`, `product_price`, `stok`) VALUES
+('B0001', 'Pensil Warna', 20000, 20),
+('B0002', 'Buku', 10000, 10),
+('B0003', 'Penghapus', 2000, 5),
+('B0004', 'Tinta', 13000, 20);
 
 --
 -- Indexes for dumped tables
